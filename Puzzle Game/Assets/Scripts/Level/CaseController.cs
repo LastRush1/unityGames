@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class CaseController : MonoBehaviour
 {
-    [SerializeField]
     CasePrefab casePrefab;
 
     GameObject caseObject;
+
+    [SerializeField]
+    CaseFactory caseFactory = default;
 
     [SerializeField]
     Vector2Int caseSize = new Vector2Int(1,1);
 
     void Start()
     {
+        casePrefab = caseFactory.GetBoard(0);
         caseObject = casePrefab.gameObject;
         caseObject.transform.localScale = new Vector2(caseSize.x, caseSize.y);
         SliceBoard();
@@ -25,10 +28,10 @@ public class CaseController : MonoBehaviour
     }
 
     [SerializeField]
-    GameObject gridTileMap;
+    GameObject gridTileMap = default;
 
     [SerializeField]
-    GameObject canvasTileMap;
+    GameObject canvasTileMap = default;
 
     public Vector2Int SizeBoard
     {
@@ -36,7 +39,7 @@ public class CaseController : MonoBehaviour
     }
 
     [SerializeField]
-    CaseGrid gridPlacePrefab;
+    CaseGrid gridPlacePrefab = default;
 
     List<CaseGrid> gridPlaceList = new List<CaseGrid>();
 
@@ -128,8 +131,8 @@ public class CaseController : MonoBehaviour
 
     void createGrid(float x, float y, int num)
     {
-        gridPlaceList.Add(Instantiate(gridPlacePrefab, new Vector3(x, y, -0.1f), Quaternion.identity));
-        gridPlaceList[gridPlaceList.Count-1].SetNumber(gridPlaceList.Count-1);
+        gridPlaceList.Add(caseFactory.GetGrid(num));
+        gridPlaceList[gridPlaceList.Count - 1].transform.position = new Vector3(x, y, -0.1f);
         //gridPlaceList[num].NumberGrid = num;
     }
 
@@ -138,12 +141,9 @@ public class CaseController : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit, float.MaxValue, 1))
         {
             int x = (int)(hit.point.x + caseSize.x * 0.5f);
-            Debug.Log($"x = {x}");
-            int y = (int)(hit.point.z + caseSize.y * 0.5f);
-            Debug.Log($"y = {y}");
+            int y = (int)(hit.point.y + caseSize.y * 0.5f);
             if (x >= 0 && x < caseSize.x && y >= 0 && y < caseSize.y)
             {
-                Debug.Log($"caseSize.x = {caseSize.x}");
                 return gridPlaceList[x + y * caseSize.x];
             }
         }

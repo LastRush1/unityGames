@@ -56,17 +56,23 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Level\LevelManager.cs" />
-    <Compile Include="Assets\Scripts\Level\PlayerEnter.cs" />
     <Compile Include="Assets\Scripts\Level\LoadData.cs" />
-    <Compile Include="Assets\Scripts\Data\ContentSO.cs" />
-    <Compile Include="Assets\Scripts\Data\ThingsSO.cs" />
-    <Compile Include="Assets\Scripts\Data\CountrySO.cs" />
-    <Compile Include="Assets\Scripts\Data\CaseSO.cs" />
+    <Compile Include="Assets\Scripts\Level\CaseController.cs" />
     <Compile Include="Assets\Scripts\Level\Thing.cs" />
     <Compile Include="Assets\Scripts\Level\CaseGrid.cs" />
-    <Compile Include="Assets\Scripts\Level\CaseController.cs" />
+    <Compile Include="Assets\Scripts\Level\LevelManager.cs" />
+    <Compile Include="Assets\Scripts\Data\ContentSO.cs" />
+    <Compile Include="Assets\Scripts\Level\PlayerEnter.cs" />
     <Compile Include="Assets\Scripts\Level\CasePrefab.cs" />
+    <Compile Include="Assets\Scripts\Data\CountrySO.cs" />
+    <Compile Include="Assets\Scripts\Data\ThingsSO.cs" />
+    <Compile Include="Assets\Scripts\Data\CaseSO.cs" />
+    <Compile Include="Assets\Scripts\Data\CaseFactory.cs" />
+    <Compile Include="Assets\Scripts\Data\ThingsFactory.cs" />
+    <Compile Include="Assets\Scripts\Data\GameObjectFactory.cs" />
+    <Compile Include="Assets\Scripts\Data\ClientsFactory.cs" />
+    <Compile Include="Assets\Scripts\Level\ThingsController.cs" />
+    <Compile Include="Assets\Scripts\Level\ThingsPlace.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\For project\Things\Survival Tools\ReadMe\ReadMe.txt" />

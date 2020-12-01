@@ -13,11 +13,29 @@ public class CaseGrid : MonoBehaviour
         get { return number; }
     }
 
+    public bool empty = true;
+
     public void SetNumber(int gridPlaceList)
     {
         if(!spawn)
         {
             number = gridPlaceList;
         }
+    }
+
+    CaseFactory originFactory;
+    public CaseFactory OriginFactory
+    {
+        get => originFactory;
+        set
+        {
+            Debug.Assert(originFactory == null, "Redefined origin factory!");
+            originFactory = value;
+        }
+    }
+
+    public void Initialize()
+    {
+
     }
 }

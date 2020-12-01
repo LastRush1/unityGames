@@ -4,13 +4,29 @@ using UnityEngine;
 
 public class CasePrefab : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    CaseFactory originFactory;
+    public CaseFactory OriginFactory
+    {
+        get => originFactory;
+        set
+        {
+            Debug.Assert(originFactory == null, "Redefined origin factory!");
+            originFactory = value;
+        }
+    }
+
+    public void Initialize()
+    {
+        
+    }
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         

@@ -7,10 +7,16 @@ using UnityEngine.EventSystems;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField]
-    CaseController caseController;
+    CaseController caseController= default;
+
+    [SerializeField]
+    ThingsController thingsController = default;
 
     CaseGrid caseGrid;
     int CaseNumber;
+
+    //[HideInInspector]
+
 
     Ray TouchRay => Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -24,7 +30,10 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
         TouchController();
+        thingsController.UseThing();
     }
+
+
 
     private void TouchController()
     {
@@ -32,14 +41,21 @@ public class LevelManager : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                caseGrid = caseController.TryGetGrid(TouchRay);
-                //BuildPlayerController(gridPlace);
-                CaseNumber = caseGrid.Number;
-                Debug.Log($"Номер тайла :{CaseNumber}");
-                //Destroy(caseGrid.gameObject);
+                if (thingsController.takeThing != null)
+                {
+                    caseGrid = caseController.TryGetGrid(TouchRay);
+                    Debug.Log("Положил");
+                    //BuildPlayerController(gridPlace);
+                    CaseNumber = caseGrid.Number;
+                    //Destroy(caseGrid.gameObject);
+                    thingsController.takeThing.transform.position = caseGrid.transform.position;
+                    thingsController.takeThing.UnUse();
+                    thingsController.takeThing = null;
+                }                
             }
         }
     }
+
 
 
 
